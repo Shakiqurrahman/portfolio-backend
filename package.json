@@ -35,6 +35,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/express": "^5.0.2",
     "@types/http-status": "^0.2.30",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.15.18",
     "eslint": "^9.27.0",
