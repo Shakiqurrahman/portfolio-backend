@@ -24,6 +24,33 @@ model User {
   @@map("users")
 }
 
+model Project {
+  id          String  @id @default(uuid())
+  title       String
+  description String
+  thumbnail   String?
+  subTitle    String?
+  sourceLink  String?
+  liveLink    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Blog {
+  id          String  @id @default(uuid())
+  title       String
+  description String
+  thumbnail   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blogs")
+}
+
 enum User_Role {
   ADMIN
   USER
