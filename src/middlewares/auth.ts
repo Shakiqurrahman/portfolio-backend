@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { User_Role } from '../../prisma/generated/prisma-client';
 import { config } from '../config/config';
 import AppError from '../errors/AppError';
 import catchAsync from '../utils/catchAsync';
 import prisma from '../utils/prisma';
+import { User_Role } from '../../generated/prisma';
 
 const auth = (...requiredRoles: User_Role[]) => {
     return catchAsync(
@@ -19,7 +19,7 @@ const auth = (...requiredRoles: User_Role[]) => {
                 throw new AppError(httpStatus.FORBIDDEN, 'Invalid Token!');
             }
 
-            // try {
+            try {
             // checking if the given token is valid
             const decoded = jwt.verify(
                 token,
@@ -58,9 +58,9 @@ const auth = (...requiredRoles: User_Role[]) => {
             req.user = decoded as JwtPayload;
             next();
 
-            // } catch (error) {
-            //     throw new AppError(httpStatus.FORBIDDEN, 'Invalid token');
-            // }
+            } catch (error) {
+                throw new AppError(httpStatus.FORBIDDEN, 'Invalid token');
+            }
         },
     );
 };

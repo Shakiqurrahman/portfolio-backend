@@ -47,6 +47,19 @@ const loginUser = catchAsync(async (req, res) => {
     });
 });
 
+const logout = catchAsync(async (req, res) => {
+    res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+    });
+    sendResponse(res, {
+        statusCode: status.OK,
+        success: true,
+        message: 'User Logout successfully!',
+        data: {},
+    });
+});
+
 const refreshToken = catchAsync(async (req, res) => {
     const { refreshToken } = req.cookies;
     const accessToken = await authService.generateNewAccessToken(refreshToken);
@@ -62,5 +75,6 @@ const refreshToken = catchAsync(async (req, res) => {
 export const authController = {
     registerUser,
     loginUser,
+    logout,
     refreshToken,
 };
