@@ -32,12 +32,12 @@ const getProjectById = async (projectId: string) => {
 const updateProjectById = async (
     projectId: string,
     payload: Partial<Project>,
-) => {
+) => {    
     const project = await prisma.project.findUnique({
         where: {
             id: projectId,
         },
-    });
+    });    
 
     if (!project) {
         throw new AppError(status.NOT_FOUND, 'Project not found!');
@@ -48,7 +48,7 @@ const updateProjectById = async (
             id: projectId,
         },
         data: payload,
-    });
+    });    
 
     return updatedProject;
 };
