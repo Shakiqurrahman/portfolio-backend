@@ -23,7 +23,10 @@ export const config = {
 };
 
 export const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    origin: [
+        'https://my-portfolio-shakiqurrahmans-projects.vercel.app',
+        'https://portfolio-dashboard-six-lilac.vercel.app',
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
